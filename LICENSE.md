@@ -1,4 +1,4 @@
-Oculo is built using GreenSock Animation Platform (GSAP) and its usage requires a [GreenSock license](https://greensock.com/licensing/).
+Oculo uses GreenSock Animation Platform (GSAP) and its usage requires a [GreenSock license](https://greensock.com/licensing/).
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
