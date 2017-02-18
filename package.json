@@ -1,0 +1,51 @@
+{
+  "author": {
+    "name" : "Adam Kucharik",
+    "email" : "akucharik@gmail.com"
+  },
+  "description": "A simple and intuitive JavaScript 2D virtual camera for animating HTML within a frame",
+  "homepage": "https://akucharik.github.io/oculo/",
+  "keywords": [
+    "2D",
+    "animation",
+    "camera",
+    "HTML",
+    "HTML5",
+    "javascript",
+    "oculo",
+    "pan",
+    "rotate",
+    "zoom"
+  ],
+  "license": "MIT",
+  "main": "dist/oculo.min.js",
+  "name": "Oculo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akucharik/oculo"
+  },
+  "version": "0.9.0-alpha",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "babel-register": "^6.23.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.3.0",
+    "chai": "^3.5.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-if": "^2.0.2",
+    "gulp-mocha": "^3.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.1",
+    "jsdoc": "^3.4.3",
+    "mocha": "^3.2.0",
+    "uglify-js": "^2.7.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "fbemitter": "^2.1.1",
+    "gsap": "^1.19.1",
+    "lodash": "^4.17.4"
+  }
+}

@@ -1,4 +1,4 @@
 {
-  "presets": ["es2015", "react"],
-  "ignore": ["dist/*.js", "*.min.js"]
+  "presets": ["es2015"],
+  "ignore": ["*.min.js"]
 }
