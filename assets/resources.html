@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="copyright" content="Adam Kucharik">
+    <meta name="description" content="OculoJS is a simple and intuitive JavaScript 2D virtual camera for animating HTML within a frame.">
+    <meta name="keywords" content="oculojs, javascript, camera, 2d, html5, animate">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>OculoJS - A simple and intuitive JavaScript 2D virtual camera for animating HTML within a frame</title>
+    <script src="http://use.edgefonts.net/source-sans-pro:n4,i4,n6,i6,n7,i7;source-code-pro.js"></script>
+    <link type="text/css" href="../styles/site.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="bannerCamScene" style="display: none; color: #666; font-family: Arial; font-size: 30px; line-height: 1; position: relative; width: 400px; height: 500px;">
+        <!--<img style="position: absolute; top: -50px; left: -50px; max-width: none;" src="images/stock-photo-blue-festive-christmas-elegant-abstract-background-with-bokeh-lights-and-stars-114681208.jpg" width="1500" height="1600"/>-->
+        <!--<img style="position: absolute; top: -50px; left: -50px; max-width: none;" src="images/stock-photo-dark-blue-abstract-backgrounds-with-bokeh-354617600.jpg" width="750" height="547"/>-->
+        <!--<img style="position: absolute; top: -50px; left: -50px; max-width: none;" src="images/stock-photo-abstract-background-multicolored-bokeh-circles-beautiful-background-with-particles-368178371.jpg" width="750" height="557"/>-->
+        <!--<img style="position: absolute; top: -50px; left: -50px; max-width: none;" src="images/stock-photo-bright-abstract-mosaic-multicolored-background-with-gloss-433335025.jpg" width="750" height="557"/>-->
+        <!--<img style="position: absolute; top: -50px; left: -50px; max-width: none;" src="images/stock-vector-purple-circle-pixel-mosaic-background-311004404.jpg" width="750" height="800"/>-->
+        <!--<img style="position: absolute; top: -50px; left: -50px; max-width: none;" src="images/stock-vector-background-halftone-dots-548704921.jpg" width="750" height="800"/>-->
+        <img style="position: absolute; top: -50px; left: -50px; max-width: none;" src="images/stock-vector-vector-illustration-of-an-abstract-background-284563400.jpg" width="750" height="800"/>
+        <!--<img style="position: absolute; top: -50px; left: -50px; max-width: none;" src="images/stock-vector-purple-circle-pixel-mosaic-background-311004404.jpg" width="750" height="800"/>-->
+        
+        <span id="zoom" style="opacity: 0; position: absolute; top: 20px; left: 0px;">zoom</span>
+        <!--<span style="background-color: red; position: absolute; left: 35px; top: 10px; width: 1px; height: 30px;"></span>-->
+        <i id="zoomInIcon" style="opacity: 0; position: absolute; top: 22px; left: 25px;" class="fa fa-search-plus"></i>
+        <i id="zoomOutIcon" style="opacity: 0; position: absolute; top: 22px; left: 25px;" class="fa fa-search-minus"></i>
+        <div id="other" style="opacity: 0;">
+            <div style="border-top: 1px dashed black; height: 1px; position: absolute; top: 37px; left: 90px; width: 250px;"></div>
+            <span id="pan" style="opacity: 0; position: absolute; top: 21px; right: 0;">pan</span>
+            <i id="panIcon" style="opacity: 1; position: absolute; top: 23px; right: 11px;" class="fa fa-arrows"></i>
+            <div style="display: none; background-color: black; height: 1px; position: absolute; top:135px; left:10px; width: 200px; transform: rotate(50deg);"></div>
+            <span id="rotate" style="opacity: 0; position: absolute; top: 250px; left: 50%; transform: translate(-50%, -50%);">rotate</span>
+            <i id="rotateIcon" style="opacity: 1; position: absolute; top: 252px; left: 50%; transform: translate(-50%, -50%);" class="fa fa-rotate-left"></i>
+            <div style="background-color: black; height: 1px; position: absolute; top:135px; right: 10px; width: 200px; transform: rotate(-50deg);"></div>
+            <span id="more" style="font-size: 20px; position: absolute; top: 400px; left: 50%; transform: translate(-50%, -50%) translate(3px, 0);">and more&hellip;</span>
+            <span id="ease" style="opacity: 0; font-size: 10px; position: absolute; top: 416px; left: 50%; transform: translate(-50%, -50%) translate(-3px, 0);">(with ease)</span>
+        </div>
+    </div>
+    <div id="bannerCam" class="home-banner-camera">
+        <!--<div class="bcv-ignore-pointer-events">
+            <div style="box-sizing: border-box; position: absolute; top: 50%; left: 50%; width: 42px; height: 3px; background-color: rgba(255,255,255,0.5); transform: translateX(-50%) translateY(-1px); z-index: 1;"></div>
+            <div style="box-sizing: border-box; position: absolute; top: 50%; left: 50%; width: 3px; height: 42px; background-color: rgba(255,255,255,0.5); transform: translateX(-1px) translateY(-50%); z-index: 1;"></div>
+            <div style="box-sizing: border-box; position: absolute; top: 50%; left: 50%; width: 40px; height: 1px; background-color: rgba(0,0,0,1); transform: translateX(-50%) translateY(0%); z-index: 1;"></div>
+            <div style="box-sizing: border-box; position: absolute; top: 50%; left: 50%; width: 1px; height: 40px; background-color: rgba(0,0,0,1); transform: translateX(0%) translateY(-50%); z-index: 1;"></div>
+        </div>-->
+    </div>
+    <img class="home-banner-camera-frame" src="images/animation-frame.svg" alt="Animation frame" width="400" />
+    
+    <div id="camera2" style="display: none; background-color: red; box-shadow: 0 0 10px rgba(0,0,0,0.2); width: 600px; height: 400px;"></div>
+
+    <div id="scene10" style="display: none; width: 898px; height: 674px;">
+        <div style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); position: absolute; top: 100px; left: 100px;">
+            <div style="background-color: white; line-height: 1.2; padding: 1.0rem; width: 200px;">Hi, my name is "thing", and I'm HTML.</div>
+            <svg width="20" height="20" viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; top: 50%; right: 2px; transform: translate(100%, -50%);">
+                <polygon points="0,0 100,50 0,100" style="fill: white;" />
+            </svg>
+        </div>
+    </div>
+
+    <div id="scene2" style="display: none; width: 1827px; height: 1215px;">
+        <img src="images/FFL-Spritesheet-White-1827x1215.png" alt="Final Fantasy Legend Sprites" width="1827" height="1215" />
+        <div id="box100" style="box-sizing: border-box; position: absolute; top: 0; left: 0; width: 100px; height: 100px; border: 1px solid green;"></div>
+        <div style="box-sizing: border-box; position: absolute; top: 0; left: 0; width: 150px; height: 150px; border: 1px solid green;"></div>
+        <div style="box-sizing: border-box; position: absolute; top: 0; left: 0; width: 200px; height: 200px; border: 1px solid green;"></div>
+        <div style="box-sizing: border-box; position: absolute; top: 0; left: 0; width: 250px; height: 250px; border: 1px solid green;"></div>
+        <div style="box-sizing: border-box; position: absolute; top: 0; left: 0; width: 300px; height: 300px; border: 1px solid green;"></div>
+    </div>
+
+    <div id="scene3" style="display: none; width: 1000px; height: 500px;">
+        <div style="height: 100%; background-color: #eee; border: 10px solid black;"></div>
+        <img src="images/FFL-Meat-White-64x48.png" alt="Final Fantasy Legend Meat" width="64" height="48" style="position: absolute; left: 100px; top: 100px;" />
+        <img src="images/FFL-Meat-White-64x48.png" alt="Final Fantasy Legend Meat" width="64" height="48" style="position: absolute; left: 200px; top: 100px;"/>
+        <img src="images/FFL-Meat-White-64x48.png" alt="Final Fantasy Legend Meat" width="64" height="48" style="position: absolute; left: 100px; top: 200px;"/>
+        <img src="images/FFL-Meat-White-64x48.png" alt="Final Fantasy Legend Meat" width="64" height="48" style="position: absolute; left: 200px; top: 200px;"/>
+        <div id="box100" style="box-sizing: border-box; position: absolute; top: 0; left: 0; width: 100px; height: 100px; border: 1px solid green;"></div>
+    </div>
+    
+    <footer class="footer">
+        <section>
+            <div class="column-full">
+                <p class="footer-copyright">&copy; <span id="copyrightYear">2017</span> All rights reserved. Made by <a href="https://github.com/akucharik"><i class="fa fa-github footer-github" aria-hidden="true"></i>akucharik</a>.</p>
+            </div>
+        </section>
+    </footer>
+    
+    <script type="text/javascript" src="../scripts/TweenMax.min.js"></script>
+    <script type="text/javascript" src="../scripts/Draggable.min.js"></script>
+    <script type="text/javascript" src="../scripts/ScrollToPlugin.js"></script>
+    <script type="text/javascript" src="../../dist/oculo.js"></script>
+    <script type="text/javascript" src="../scripts/prettify.js"></script>
+    <script type="text/javascript" src="../scripts/site.min.js"></script>
+        <script type="text/javascript">
+        var bannerCam = new Oculo.Camera({
+            view: '#bannerCam',
+            height: 280,
+            width: 280
+        });
+        
+        var zoomOutIcon = document.getElementById('zoomOutIcon');
+        var zoomInIcon = document.getElementById('zoomInIcon');
+        var zoomText = document.getElementById('zoom');
+        var other = document.getElementById('other');
+        var panIcon = document.getElementById('panIcon');
+        var panText = document.getElementById('pan');
+        var rotateIcon = document.getElementById('rotateIcon');
+        var rotateText = document.getElementById('rotate');
+        var easeText = document.getElementById('ease');
+        
+        var setupAnim = new TimelineLite({ paused: true });
+        setupAnim.to(zoomOutIcon, 0.5, { delay: 0.5, opacity: 1 }, 0)
+            .set(zoomInIcon, { opacity: 0 }, 0)
+            .set(zoomText, { opacity: 0 }, 0)
+            .set(other, { opacity: 0 }, 0)
+            .set(panIcon, { opacity: 1 }, 0)
+            .set(panText, { opacity: 0 }, 0)
+            .set(rotateIcon, { opacity: 1 }, 0)
+            .set(rotateText, { opacity: 0 }, 0)
+            .set(easeText, { opacity: 0 });
+        
+        var zoomAnim = new TimelineLite({ paused: true });
+        zoomAnim.to(zoomOutIcon, 0.3, { opacity: 0 }, 0)
+            .fromTo(zoomInIcon, 0.3, { opacity: 1 }, { opacity: 0 }, 0)
+            .to(zoomText, 0.3, { opacity: 1 }, 0.1);
+        
+        var panAnim = new TimelineLite({ paused: true });
+        panAnim.to(other, 0.5, { opacity: 1 }, 0.5)
+           .to(panIcon, 1, { opacity: 0 }, 1.8)
+           .to(panText, 1, { opacity: 1 }, 2.0);
+        
+        var rotateAnim = new TimelineLite({ paused: true });
+        rotateAnim.to(rotateIcon, 0.5, { opacity: 0 }, 0.5)
+            .to(rotateText, 0.5, { opacity: 1 }, 0.5);
+        
+        var easeAnim = new TweenLite(easeText, 1, { delay: 0.5, opacity: 1, paused: true });
+        
+        var animations = [{
+            name: 'fadeIn',
+            keyframes: [{
+                duration: 0,
+                opacity: 0,
+                zoom: 2
+            }, {
+                duration: 3,
+                opacity: 1,
+                zoom: 1
+            }]
+        }, {
+            name: 'fadeOut',
+            keyframes: [{
+                duration: 2,
+                opacity: 0,
+                options: {
+                    ease: Power2.easeOut,
+                    overwrite: false
+                }
+            }]
+        }, {
+            name: 'oculo',
+            options: {
+                repeat: 1,
+                repeatDelay: 2,
+                onStart: function () {
+                    setupAnim.restart();
+                },
+                onRepeat: function () {
+                    console.log('I repeat!');
+                    setupAnim.restart();
+                }
+            },
+            keyframes: [{
+                duration: 0,
+                opacity: 0,
+                position: zoomText,
+                rotation: 0,
+                zoom: 3
+            }, {
+                duration: 2,
+                opacity: 1,
+                options: {
+                    delay: 2,
+                    ease: Power2.easeOut
+                }
+            }, {
+                duration: 1,
+                zoom: 0.5,
+                options: {
+                    delay: 2,
+                    ease: Power4.easeOut
+                }
+            }, {
+                duration: 2,
+                zoom: 0.7,
+                options: {
+                    ease: Elastic.easeOut.config(2, 0.5),
+                    onStart: function () {
+                        zoomAnim.restart();
+                    }
+                }
+            }, {
+                duration: 3.5,
+                position: panText,
+                options: {
+                    delay: 0.5,
+                    ease: Power4.easeOut,
+                    onStart: function () {
+                        panAnim.restart();
+                    }
+                }
+            }, {
+                duration: 0.5,
+                position: rotateText,
+                options: {
+                    delay: 0.5,
+                    ease: Power4.easeOut
+                }
+            }, {
+                duration: 2,
+                rotation: 2160,
+                options: {
+                    ease: Power4.easeOut,
+                    onStart: function () {
+                        rotateAnim.restart();
+                    }
+                }
+            }, {
+                duration: 3,
+                position: function () {
+                    var more = bannerCam.getElementPosition('#more');
+                    
+                    return { 
+                        x: bannerCam.position.x, 
+                        y: more.y
+                    };
+                },
+                options: {
+                    ease: Power2.easeOut
+                }
+            }, {
+                duration: 1,
+                position: function () {
+                    var position = bannerCam.position.clone();
+                    position.y += 3;
+                    
+                    return position;
+                },
+                options: {
+                    delay: 1,
+                    ease: Power2.easeOut,
+                    onStart: function () {
+                        easeAnim.restart();
+                    }
+                }
+            }, {
+                duration: 2,
+                opacity: 0,
+                options: {
+                    ease: Power2.easeOut
+                }
+            }]
+        }];
+        
+        animations.forEach(function (item) {
+            bannerCam.addAnimation(item.name, item);
+        });
+        
+        bannerCam.animations.get('oculo').timeScale(2);
+        
+        bannerCam.addScene('scene1', '#bannerCamScene').setScene('scene1');
+        bannerCam.opacity = 0;
+        //bannerCam.render().play('oculo');
+        //bannerCam.addScene('scene1', new Oculo.Scene('#bannerCamScene', 400, 500)).setScene('scene1').render().play('zoom');
+    </script>
+</body>
+</html>

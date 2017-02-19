@@ -1,1 +1,199 @@
-<h1>Oculo</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="copyright" content="Adam Kucharik">
+    <meta name="description" content="Oculo is a simple and intuitive JavaScript 2D virtual camera for animating HTML within a frame.">
+    <meta name="keywords" content="oculo, javascript, camera, 2d, html5, animate">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Oculo - A simple and intuitive JavaScript 2D virtual camera for animating HTML within a frame</title>
+    <script src="http://use.edgefonts.net/source-sans-pro:n4,i4,n6,i6,n7,i7;source-code-pro.js"></script>
+    <link type="text/css" href="styles/site.min.css" rel="stylesheet" />
+</head>
+<body>    
+    <a id="anchorTop"></a>
+    <div class="home-banner-bkgd">
+        <div id="homeBannerCircles" class="home-banner-circles"></div>
+        <nav class="top-bar">
+            <div class="row columns top-bar-row">
+                <div class="top-bar-left">
+                    <ul class="menu">
+                        <li><a id="navDemo" href="#anchorDemo">Demo</a></li>
+                        <li><a id="navGetStarted" href="#anchorGetStarted">Get Started</a></li>
+                        <li><a id="navDocumentation" href="#anchorDocumentation">Documentation</a></li>
+                        <li><a href="https://github.com/akucharik/oculo" target="_blank">Source</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="home-banner">
+            <section class="home-banner-section">
+                <div class="column-full">
+                    <div class="row align-middle">
+                        <div class="home-banner-text-column">
+                            <img class="home-banner-header" src="images/oculo-logo.svg" alt="Oculo logo" width="190" />
+                            <span class="phase">Alpha</span>
+                            <p class="home-banner-text">A simple and intuitive 2D virtual camera for animating HTML within a frame</p>
+                            <a href="https://github.com/akucharik/oculo/archive/master.zip" class="home-banner-button">Download</a>
+                        </div>
+                        <div class="home-banner-camera-column">
+                            <img id="homeBannerGraphic" class="home-banner-graphic" src="images/oculo-symbol.svg" alt="Oculo symbol" width="400" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <div class="greensock">
+        <section>
+            <div class="column-full">
+                <div class="row">
+                    <div class="greensock-text-column">
+                        <h1 class="greensock-header">Features &amp; Performance</h2>
+                        <p class="greensock-text">Oculo uses GreenSock Animation Platform (GSAP) to handle its animation and benefits from GSAP's features and performance.</p>
+                    </div>
+                    <div class="greensock-graphic-column">
+                        <img class="greensock-graphic" src="images/greensock-logo.svg" alt="GreenSock logo" width="300" height="110" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <a id="anchorDemo"></a>
+    <div class="demo">
+        <section>
+            <div class="column-full">
+                <h1>Demo <a id="topDemo" href="#anchorTop" class="top"><i class="fa fa-arrow-circle-up"></i></a></h1>
+                <h2>What can Oculo do?</h2>
+                <p>Oculo can pan, zoom, rotate, shake, fade, resize, enforce bounds, and more!</p>
+                <div class="row">
+                    <div class="shrink">
+                        <div id="camera" class="demo-camera">
+                            <div class="demo-camera-reticle">
+                                <div class="demo-camera-crosshair crosshair-horizontal-background"></div>
+                                <div class="demo-camera-crosshair crosshair-vertical-background"></div>
+                                <div class="demo-camera-crosshair crosshair-horizontal-foreground"></div>
+                                <div class="demo-camera-crosshair crosshair-vertical-foreground"></div>
+                            </div>
+                        </div>
+                        <div id="scene1" style="display: none; width: 1350px; height: 900px;">
+                            <div id="pt" class="periodic-table"></div>
+                        </div>
+                    </div>
+                    <div id="app" class="demo-cpanel"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <a id="anchorGetStarted"></a>
+    <div class="get-started">
+        <section>
+            <div class="column-full">
+                <h1>Get started <a id="topGetStarted" href="#anchorTop" class="top"><i class="fa fa-arrow-circle-up"></i></a></h1>
+                <h2>1. Add Oculo and its dependencies to the page.</h2>
+                <p>After you <a class="text-link" href="https://github.com/akucharik/oculo/archive/master.zip">download</a> Oculo, add the necessary files to the page.</p>
+<pre class="prettyprint html"><code>&lt;script type="text/javascript" src="scripts/TweenMax.min.js"&gt;&lt;/script&gt;
+&lt;!-- Draggable.min.js is only needed if you want to enable "dragToMove" on the camera --&gt;
+&lt;script type="text/javascript" src="scripts/Draggable.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="scripts/oculo.min.js"&gt;&lt;/script&gt;</code></pre>
+
+                <h2>2. Set up your HTML</h2>
+                <p>Create HTML elements that correspond to your camera and scene.</p>
+<pre class="prettyprint html"><code>&lt;div id="camera"&gt;&lt;/div&gt;
+&lt;div id="scene" style="width: 800px; height: 400px; background-color: gray;"&gt;
+    &lt;div&gt;My first scene...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+                <h2>3. Activate your camera</h2>
+                <p>Activate your camera by creating an instance with the desired options, adding and setting the scene, and rendering it.</p>
+<pre class="prettyprint"><code>var camera = new Oculo.Camera({
+    view: '#camera',
+    width: 500,
+    height: 250,
+    dragToMove: true,
+    wheelToZoom: true
+}).addScene('scene1', '#scene');
+
+camera.setScene('scene1');
+camera.render();
+
+// You can also create a scene like this:
+camera.addScene('scene2', new Oculo.Scene('#scene2', 800, 400));</code></pre>
+            
+                <h2>4. Animate your camera</h2>
+                <p>To see your new camera in action, call one of the animation methods.</p>
+<pre class="prettyprint"><code>camera.zoomTo(2, 1, { ease: Power2.easeOut });</code></pre>
+            
+                <h2>5. Create reusable animations</h2>
+                <p>Creating reusable animations can make working with your camera a breeze. 
+                    Simply add your animation to your camera and play it in the future. 
+                    If you create an animation without a defined starting point, it will play from the current camera state.</p>
+<pre class="prettyprint"><code>camera.addAnimation('zoomInOut', {
+  keyframes: [{ 
+      zoom: 2, 
+      duration: 1, 
+      options: { 
+          ease: Power2.easeIn 
+      }
+  }, {
+      zoom: 1,
+      duration: 1,
+      options: {
+          ease: Power2.easeOut
+      }
+  }]
+});
+
+//Play your animation in the future
+camera.play('zoomInOut');</code></pre>
+            
+                <p>If you want an animation to consistently play from a defined starting point, just set the first keyframe's duration to 0.</p>
+<pre class="prettyprint"><code>camera.addAnimation('zoomIn', {
+  keyframes: [{ 
+      zoom: 1, 
+      duration: 0,
+  }, {
+      zoom: 2,
+      duration: 1,
+      options: {
+          ease: Power2.easeOut
+      }
+  }]
+});</code></pre>
+            
+            </div>
+        </section>
+    </div>
+    
+    <a id="anchorDocumentation"></a>
+    <div class="documentation">
+        <section>
+            <div class="column-full">
+                <h1>Documentation <a id="topDocumentation" href="#anchorTop" class="top"><i class="fa fa-arrow-circle-up"></i></a></h1>
+                <p>Coming soon!</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer class="footer">
+        <section>
+            <div class="column-full">
+                <p class="footer-copyright">&copy; <span id="copyrightYear">2017</span> All rights reserved. Made by <a href="https://github.com/akucharik"><i class="fa fa-github footer-github" aria-hidden="true"></i>akucharik</a>.</p>
+            </div>
+        </section>
+    </footer>
+    
+    <script type="text/javascript" src="scripts/TweenMax.min.js"></script>
+    <script type="text/javascript" src="scripts/Draggable.min.js"></script>
+    <script type="text/javascript" src="scripts/ScrollToPlugin.js"></script>
+    <script type="text/javascript" src="scripts/oculo.min.js"></script>
+    <script type="text/javascript" src="scripts/prettify.js"></script>
+    <script type="text/javascript" src="scripts/site.min.js"></script>
+</body>
+</html>
