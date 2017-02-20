@@ -58,6 +58,7 @@ $foundation-palette: (
   alert: #cc4b37,
 );
 $greensock-black: #262626;
+$greensock-green: #61ac27;
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
@@ -147,7 +148,7 @@ $code-padding: rem-calc(0 3);
 $anchor-color: scale-color($primary-color, $lightness: 8%);
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration: none;
-$anchor-text-decoration-hover: none;
+$anchor-text-decoration-hover: underline;
 $hr-width: $global-width;
 $hr-border: 1px solid $medium-gray;
 $hr-margin: rem-calc(20) auto;

@@ -83,12 +83,19 @@ select {
     padding: 0 0.25rem;
 }
 
+a {
+    &:focus {
+        text-decoration: none;
+    }
+}
+
 // Columns
 .column-full {
     @include flex-grid-column();
     
     padding-right: rem-calc(30);
     padding-left: rem-calc(30);
+    width: 100%;
     
     @include breakpoint(medium) {
         padding-right: rem-calc(40);
@@ -197,6 +204,7 @@ select {
 
                     &:hover {
                         color: $white;
+                        text-decoration: none;
                     }
                 }
             }
@@ -282,6 +290,10 @@ select {
         margin: 0;
         padding-right: 2.2rem;
         padding-left: 2.2rem;
+        
+        &:hover {
+            text-decoration: none;
+        }
     }
     
     
@@ -371,6 +383,15 @@ select {
     
     &-text {
         color: $medium-gray;
+    }
+    
+    &-link {
+        color: $greensock-green;
+        
+        &:focus,
+        &:hover {
+            color: scale-color($greensock-green, $lightness: -14%);
+        }
     }
     
     &-graphic-column {
