@@ -171,6 +171,7 @@ circles.forEach(function (item) {
 
     TweenLite.set(item, {
         opacity: random(0, 1) === 0 ? 0 : random(0.01, 0.05),
+        rotation: 0.01, // Helps Firefox render faster by forcing a matrix3d transform
         scale: random(0.1, 1),
         xPercent: -50,
         yPercent: -50,
