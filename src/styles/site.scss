@@ -79,6 +79,10 @@ section {
     padding-bottom: rem-calc(30);
 }
 
+select {
+    padding: 0 0.25rem;
+}
+
 // Columns
 .column-full {
     @include flex-grid-column();
