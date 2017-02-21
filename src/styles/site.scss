@@ -171,6 +171,11 @@ a {
 
             @include breakpoint(medium) {
                 flex-flow: row;
+                justify-content: center;
+            }
+            
+            @include breakpoint(large) {
+                justify-content: flex-start;
             }
         
              > li {
@@ -233,7 +238,16 @@ a {
     
     &-section {
         padding-top: 0;
-        padding-bottom: 0;
+        padding-bottom: 0;        
+    }
+    
+    &-subsection {
+        @include flex-grid-row();
+        justify-content: center;
+
+        @include breakpoint(large) {
+            justify-content: flex-start;
+        }
     }
     
     &-text-column {
@@ -245,14 +259,14 @@ a {
         text-align: center;
         
         @include breakpoint(medium) {
-            @include flex-grid-column(4, 0);
-            margin-top: 0;
-            text-align: left;
+            @include flex-grid-column(8, 0);
         }
         
         @include breakpoint(large) {
             @include flex-grid-column(5, 0);
             @include grid-column-offset(1);
+            margin-top: 0;
+            text-align: left;
         }
     }
     
@@ -271,7 +285,7 @@ a {
         position: absolute;
         top: 2px;
         
-        @include breakpoint(medium) {
+        @include breakpoint(large) {
             left: 188px;
         }
     }
@@ -302,14 +316,8 @@ a {
         height: 325px;
         position: relative;
         
-        @include breakpoint(medium) {
-            @include flex-grid-column(7, 0);
-            @include grid-column-offset(1);
-        }
-        
         @include breakpoint(large) {
             @include flex-grid-column(6, 0);
-            @include grid-column-offset(0);
         }
     }
     
@@ -343,10 +351,6 @@ a {
         transform: translate(-50%, -50%) translate3d(0px, 300px, 0px);
         width: 400px;
         
-        @include breakpoint(medium) {
-            left: 50%;
-        }
-        
         @include breakpoint(large) {
             left: 40%;
         }
@@ -356,17 +360,27 @@ a {
 .greensock {
     background-color: $greensock-black;
     
+    &-subsection {
+        @include flex-grid-row();
+        justify-content: center;
+
+        @include breakpoint(large) {
+            justify-content: flex-start;
+        }
+    }
+    
     &-text-column {
         @include flex-grid-column(12, 0);
         text-align: center;
         
         @include breakpoint(medium) {
-            @include flex-grid-column(5, 0);
-            text-align: left;
+            @include flex-grid-column(8, 0);
         }
         
         @include breakpoint(large) {
+            @include flex-grid-column(5, 0);
             @include grid-column-offset(1);
+            text-align: left;
         }
     }
     
@@ -398,13 +412,9 @@ a {
         @include flex-grid-column(12, 0);
         position: relative;
         
-        @include breakpoint(medium) {
-            @include flex-grid-column(7, 0);
-            text-align: left;
-        }
-        
         @include breakpoint(large) {
             @include flex-grid-column(6, 0);
+            text-align: left;
         }
     }
     
@@ -413,12 +423,9 @@ a {
         position: relative;
         left: 50%;
         transform: translate(-50%, 0);
-
-        @include breakpoint(medium) {
-            @include absolute-center();
-        }
         
         @include breakpoint(large) {
+            @include absolute-center();
             left: 40%;
         }
     }
