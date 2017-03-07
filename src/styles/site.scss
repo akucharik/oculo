@@ -272,10 +272,14 @@ a {
     }
     
     &-header {
-        max-width: none;
-        margin-bottom: 0.6em;
+        line-height: 1;
+        margin-bottom: 0.25em;
         position: relative;
         left: -2px;
+        
+        & > img {
+            max-width: none;
+        }
     }
     
     .phase {
