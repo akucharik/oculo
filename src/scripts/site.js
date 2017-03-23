@@ -1,15 +1,16 @@
 'use strict';
 
-import debounce      from 'lodash/debounce';
-import random        from 'lodash/random';
-import React         from 'react';
-import ReactDOM      from 'react-dom';
-import { Provider }  from 'react-redux';
-import actions       from './actions';
-import camera        from './camera';
-import data          from './data/data';
-import store         from './store';
-import App           from './components/app';
+import debounce       from 'lodash/debounce';
+import random         from 'lodash/random';
+import prettify       from 'code-prettify/loader/prettify';
+import React          from 'react';
+import ReactDOM       from 'react-dom';
+import { Provider }   from 'react-redux';
+import actions        from './actions';
+import camera         from './camera';
+import data           from './data/data';
+import store          from './store';
+import App            from './components/app';
 
 function resizeCamera () {
     if (window.innerWidth >= 1024) {
@@ -26,7 +27,7 @@ function resizeCamera () {
 // Set up miscellaneous bits
 // --------------------
 document.getElementById('copyrightYear').innerHTML = new Date().getFullYear();
-prettyPrint();
+window.prettyPrint();
 data.scrollItems.forEach(function (item) {
     document.querySelector(item.trigger).addEventListener('click', function () {
         event.preventDefault();

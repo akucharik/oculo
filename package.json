@@ -1,11 +1,11 @@
 {
   "author": {
-    "name" : "Adam Kucharik",
-    "email" : "akucharik@gmail.com"
+    "name": "Adam Kucharik",
+    "email": "akucharik@gmail.com"
   },
   "description": "A simple and intuitive JavaScript 2D virtual camera for animating HTML within a frame",
   "homepage": "https://akucharik.github.io/oculo/",
-    "keywords": [
+  "keywords": [
     "2D",
     "animation",
     "camera",
@@ -32,7 +32,9 @@
     "babelify": "^7.3.0",
     "browserify": "^13.1.1",
     "del": "^2.2.2",
+    "eslint-plugin-react": "^6.10.3",
     "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
     "gulp-if": "^2.0.2",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
@@ -42,6 +44,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "code-prettify": "^0.1.0",
     "foundation-sites": "^6.3.0-rc1",
     "gsap": "^1.19.1",
     "lodash": "^4.16.6",

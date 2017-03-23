@@ -1,0 +1,29 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "globals": {
+    "Oculo": false,
+    "Power0": false,
+    "Power1": false,
+    "Power2": false,
+    "Power3": false,
+    "Power4": false,
+    "TimelineMax": false,
+    "TweenLite": false,
+    "TweenMax": false
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "no-console": ["error", { allow: ["warn", "error"] }],
+    "no-unused-vars": 1
+  }
+}

@@ -1,7 +1,5 @@
 'use strict';
 
-import data  from './data/data';
-
 const actions = {
     type: {
         // UI properties

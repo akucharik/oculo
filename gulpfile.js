@@ -4,6 +4,7 @@ var babelify = require('babelify');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var del = require('del');
+var lint = require('gulp-eslint');
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var rename = require('gulp-rename');
@@ -14,12 +15,10 @@ var uglify = require('gulp-uglify');
 var config = {
     environment: 'production',
     development: {
-        lint: true,
         minify: false,
         sourcemaps: true
     },
     production: {
-        lint: false,
         minify: true,
         sourcemaps: false
     },
@@ -29,11 +28,10 @@ var config = {
         source: './src/scripts/site.js',
         vendor: {
             source: [
-                './src/scripts/vendor/oculo.min.js',
-                './src/scripts/vendor/prettify.js',
-                './src/scripts/vendor/Draggable.min.js',
-                './src/scripts/vendor/ScrollToPlugin.js',
-                './src/scripts/vendor/TweenMax.min.js'
+                './node_modules/gsap/src/minified/TweenMax.min.js',
+                './node_modules/gsap/src/minified/utils/Draggable.min.js',
+                './node_modules/gsap/src/minified/plugins/ScrollToPlugin.min.js',
+                './src/scripts/vendor/oculo.min.js'
             ]
         }
     },
@@ -72,7 +70,7 @@ gulp.task('copy:vendor:scripts', ['clean:scripts'], function () {
         .pipe(gulp.dest(config.scripts.destDirectory));
 });
 
-gulp.task('compile:scripts', ['clean:scripts', 'copy:vendor:scripts'], function () {
+gulp.task('compile:scripts', ['clean:scripts', 'lint', 'copy:vendor:scripts'], function () {
     return browserify(config.scripts.source, { 
             debug: config[config.environment].sourcemaps,
             transform: babelify
@@ -98,4 +96,11 @@ gulp.task('compile:styles', ['clean:styles'], function () {
         }).on('error', sass.logError))
         .pipe(gulpif(config[config.environment].minify, rename({suffix: '.min'})))
         .pipe(gulp.dest(config.styles.destDirectory));
+});
+
+gulp.task('lint', () => {
+    return gulp.src(['./src/scripts/*.js','!node_modules/**'])
+        .pipe(lint())
+        .pipe(lint.format())
+        .pipe(lint.failAfterError());
 });
