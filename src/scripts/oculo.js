@@ -35,21 +35,13 @@ import Utils         from './utils';
 import Vector2       from './math/vector2';
 import version       from './version';
 
-
-/**
-* @namespace Oculo
-*/
-const Oculo = {
-    Animation: Animation,
-    Camera: Camera,
-    CSSRenderer: CSSRenderer,
-    Math: Math,
-    Matrix2: Matrix2,
-    Scene: Scene,
-    SceneManager: SceneManager,
-    Utils: Utils,
-    Vector2: Vector2,
-    version: version
-};
-
-module.exports = Oculo;
+export { Animation };
+export { Camera };
+export { CSSRenderer };
+export { Math };
+export { Matrix2 };
+export { Scene };
+export { SceneManager };
+export { Utils };
+export { Vector2 };
+export { version };

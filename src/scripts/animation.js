@@ -6,15 +6,15 @@
 
 'use strict';
 
-// TODO: Move animation properties from config into data object on animation
-// TODO: Move core tween properties into data object on tween
+// TODO:
+// - Move animation properties from config into data object on animation
+// - Move core tween properties into data object on tween
+// - Replace Number.isFinite() with either lodash function or babel polyfill for better compatibility
+// - Replace Object.assign() with either lodash function or babel polyfill for better compatibility
 
-import isElement            from 'lodash/isElement';
-import isFinite             from 'lodash/isFinite';
 import isFunction           from 'lodash/isFunction';
 import pick                 from 'lodash/pick';
 import isNil                from 'lodash/isNil';
-import isObject             from 'lodash/isObject';
 import { zoomDirection }    from './constants';
 import _Math                from './math/math';
 import Matrix2              from './math/matrix2';

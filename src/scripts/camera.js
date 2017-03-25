@@ -7,7 +7,9 @@
 'use strict';
 
 // TODO:
-// 1) Ensure directional rotation plugin works
+// - Ensure directional rotation plugin works
+// - Make renderer a user parameter, but provide a default renderer
+// - Replace Number.isFinite() with either lodash function or babel polyfill for better compatibility
 
 import clamp                from 'lodash/clamp';
 import isFunction           from 'lodash/isFunction';
@@ -18,7 +20,6 @@ import AnimationManager     from './animationManager';
 import CSSRenderer          from './cssRenderer';
 import _Math                from './math/math';
 import Matrix2              from './math/matrix2';
-import Scene                from './scene';
 import SceneManager         from './sceneManager';
 import TrackControl         from './trackControl';
 import Utils                from './utils';
@@ -458,7 +459,7 @@ class Camera {
     set zoom (value) {
         this._zoom = this._clampZoom(value);
         this._updateBounds();
-    };
+    }
     
     /**
     * Clamps the position.
@@ -818,7 +819,7 @@ class Camera {
     *
     * @param {Object} [options] - The options passed to the constructor when the camera was created.
     */
-    onInitialize (options) {
+    onInitialize () {
         
     }
 
@@ -963,7 +964,7 @@ class Camera {
                     // Must cancel drag to disable dragging during animation to avoid frame rate issues caused when drag control is re-enabled
                     if (camera.isAnimating) { 
                         this._endDrag(this.pointerEvent);
-                    };
+                    }
                 },
                 wheelable: this.wheelToZoom,
                 onWheel: function (camera) {

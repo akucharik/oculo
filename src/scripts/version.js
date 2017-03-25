@@ -6,4 +6,6 @@
 
 'use strict';
 
-module.exports = '0.9.0-alpha';
+const version = '0.9.0-alpha';
+
+export default version;
