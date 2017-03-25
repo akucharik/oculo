@@ -7,7 +7,9 @@
 'use strict';
 
 // TODO:
-// 1) Ensure directional rotation plugin works
+// - Ensure directional rotation plugin works
+// - Make renderer a user parameter, but provide a default renderer
+// - Replace Number.isFinite() with either lodash function or babel polyfill for better compatibility
 
 import clamp                from 'lodash/clamp';
 import isFunction           from 'lodash/isFunction';

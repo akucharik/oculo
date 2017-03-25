@@ -6,6 +6,9 @@
 
 'use strict';
 
+// TODO:
+// - Add pinch support for zooming
+
 import throttle from 'lodash/throttle';
 import Utils    from './utils';
 

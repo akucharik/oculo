@@ -6,8 +6,11 @@
 
 'use strict';
 
-// TODO: Move animation properties from config into data object on animation
-// TODO: Move core tween properties into data object on tween
+// TODO:
+// - Move animation properties from config into data object on animation
+// - Move core tween properties into data object on tween
+// - Replace Number.isFinite() with either lodash function or babel polyfill for better compatibility
+// - Replace Object.assign() with either lodash function or babel polyfill for better compatibility
 
 import isFunction           from 'lodash/isFunction';
 import pick                 from 'lodash/pick';

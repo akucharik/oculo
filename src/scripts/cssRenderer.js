@@ -6,6 +6,9 @@
 
 'use strict';
 
+// TODO:
+// - Consider changing to a faster renderer. Use perspective to force image rasterization. Allow for CSS3 transforms on children.
+
 import { zoomDirection }    from './constants';
 
 /**

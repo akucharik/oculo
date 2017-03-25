@@ -12,6 +12,10 @@
 * @see http://greensock.com/docs/#/HTML5/GSAP/Utils/Draggable/
 */
 
+// TODO:
+// - Write own drag control to avoid GSAP Draggable dependency and get better performance (avoid having to overwrite draggable's tween)
+// - Mouse events can fire after touch events because not using preventDefault(). Fix this.
+
 import Utils from './utils';
 
 /**
