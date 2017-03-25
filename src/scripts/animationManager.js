@@ -210,7 +210,6 @@ class AnimationManager {
             this.currentAnimation.invalidate().reverse(0, false);
         } 
         else if (name === null && this.currentAnimation) {
-            let time = this.currentAnimation.time();
             this.currentAnimation.reverse();
         }
         

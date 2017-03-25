@@ -9,12 +9,9 @@
 // TODO: Move animation properties from config into data object on animation
 // TODO: Move core tween properties into data object on tween
 
-import isElement            from 'lodash/isElement';
-import isFinite             from 'lodash/isFinite';
 import isFunction           from 'lodash/isFunction';
 import pick                 from 'lodash/pick';
 import isNil                from 'lodash/isNil';
-import isObject             from 'lodash/isObject';
 import { zoomDirection }    from './constants';
 import _Math                from './math/math';
 import Matrix2              from './math/matrix2';

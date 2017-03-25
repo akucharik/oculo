@@ -130,7 +130,7 @@ class DragControl {
         /*
         * @private
         */
-        this._onPress = (event) => { 
+        this._onPress = () => { 
             this.dragProxy.addEventListener('mouseup', this._onDragRelease);
             this.dragProxy.addEventListener('mouseleave', this._onDragLeave);
             this.dragProxy.addEventListener('mousemove', this._onDragMove);
@@ -144,14 +144,14 @@ class DragControl {
         /*
         * @private
         */
-        this._onRelease = (event) => {
+        this._onRelease = () => {
             this._release();
         };
 
         /*
         * @private
         */
-        this._onLeave = (event) => {
+        this._onLeave = () => {
             this._release();
         };
 

@@ -8,6 +8,7 @@ var childProcess = require('child_process');
 var del = require('del');
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
+var lint = require('gulp-eslint');
 var mocha = require('gulp-mocha');
 var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
@@ -16,12 +17,10 @@ var uglify = require('gulp-uglify');
 var config = {
     environment: 'production',
     development: {
-        lint: true,
         minify: false,
         sourcemaps: true
     },
     production: {
-        lint: false,
         minify: true,
         sourcemaps: false
     },
@@ -68,7 +67,7 @@ gulp.task('copy:vendor', ['clean:scripts'], function () {
         .pipe(gulp.dest(config.scripts.destDirectory));
 });
 
-gulp.task('compile:scripts', ['clean:scripts', 'copy:vendor'], function () {
+gulp.task('compile:scripts', ['clean:scripts', 'copy:vendor', 'lint:scripts'], function () {
     return browserify(config.scripts.source, { 
             debug: config[config.environment].sourcemaps,
             standalone: 'Oculo',
@@ -79,16 +78,25 @@ gulp.task('compile:scripts', ['clean:scripts', 'copy:vendor'], function () {
             console.log('Error: ' + error.message); 
         })
         .pipe(source(config.scripts.destFileName))
+        .pipe(buffer())
+        .pipe(gulp.dest(config.scripts.destDirectory))
     
         // Minify
-        .pipe(buffer())
+        //.pipe(buffer())
         .pipe(gulpif(config[config.environment].minify, uglify()))
         .pipe(gulpif(config[config.environment].minify, rename({suffix: '.min'})))
-        .pipe(gulp.dest(config.scripts.destDirectory));
+        .pipe(gulpif(config[config.environment].minify, gulp.dest(config.scripts.destDirectory)));
 });
 
 gulp.task('generate:docs', ['clean:docs'], function () {
 	childProcess.exec('./node_modules/jsdoc/jsdoc.js -c jsdocconfig.json');
+});
+
+gulp.task('lint:scripts', () => {
+    return gulp.src(['./src/scripts/*.js','!node_modules/**'])
+        .pipe(lint())
+        .pipe(lint.format())
+        .pipe(lint.failAfterError());
 });
 
 gulp.task('test:scripts', function () {
