@@ -2,6 +2,10 @@
 
 Oculo is a simple and intuitive JavaScript 2D virtual camera for animating HTML within a frame.
 
+<p>
+  <img src="https://img.shields.io/github/package-json/v/akucharik/oculo?style=flat-square">
+</p>
+
 ## Dependencies
 Oculo requires [GreenSock Animation Platform](https://greensock.com/gsap) (GSAP), TweenMax to be specific, and uses it to handle tweening and rendering.
 
