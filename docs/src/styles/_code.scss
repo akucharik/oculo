@@ -1,0 +1,87 @@
+/* Pretty printing styles. Used with prettify.js. */
+/*
+// Inspired by Github
+pre .str, code .str { color: #183691; } // string
+pre .kwd, code .kwd { color: #a71d5d; } // keyword
+pre .com, code .com { color: #AEAEAE; } // comment
+pre .typ, code .typ { color: #795da3; } // type
+pre .lit, code .lit { color: #0086b3; } // literal
+pre .pun, code .pun { color: #a71d5d; } // punctuation
+pre .pln, code .pln { color: #333; } // plaintext
+pre .tag, code .tag { color: #63a35c; } // html/xml tag
+pre .atn, code .atn { color: #795da3; } // html/xml attribute name 
+pre .atv, code .atv { color: #183691; } // html/xml attribute value
+pre .dec, code .dec { color: #3387CC; } // decimal
+
+pre.prettyprint, code.prettyprint {
+    background-color: rgba(0,0,0,0.04);
+    border: 0 none transparent;
+    border-left: rem-calc(10) solid rgba(0,0,0,0.10);
+	border-radius: 3px;
+}
+*/
+
+// Custom Dark
+pre .str, code .str { color: #b383bf; } // string
+pre .kwd, code .kwd { color: #69a9d9; } // keyword
+pre .com, code .com { color: #999; } // comment
+pre .typ, code .typ { color: #cc983f; } // type
+pre .lit, code .lit { color: #78a81f; } // literal
+pre .pun, code .pun { color: #bbb; } // punctuation
+pre .pln, code .pln { color: #fff; } // plaintext
+pre .tag, code .tag { color: #69a9d9; } // html/xml tag 7999b9 3c98df
+pre .atn, code .atn { color: #3c981f; } // html/xml attribute name
+pre .atv, code .atv { color: #bc78cf; } // html/xml attribute value
+pre .dec, code .dec { color: #3387CC; } // decimal
+
+.html .kwd { color: #b383bf; } //keyword
+.html .lit { color: #b383bf; } // literal
+.html .pun + .pln { color: #b383bf; } // plaintext
+.html .atn { color: #cc983f; } // html/xml attribute name
+.html .atv { color: #b383bf; } // html/xml attribute value
+
+pre.prettyprint, code.prettyprint {
+	background-color: #282828;
+    border: 0 none transparent;
+    border-left: rem-calc(10) solid #555;
+	border-radius: 3px;
+}
+
+code, kbd, samp {
+    font-size: 0.95rem;
+}
+
+pre.prettyprint {
+	width: 100%;
+    line-height: 1.3;
+	margin: 0.3rem auto 1.5rem;
+    overflow-x: auto;
+	padding: 1.5rem 2.0rem;
+	white-space: pre-wrap;
+}
+
+pre.prettyprint > code {
+    background-color: transparent;
+    border: 0 none transparent;
+    padding: 0;
+}
+
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */
+li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
+/* Alternate shading for lines */
+li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
+@media print {
+  pre .str, code .str { color: #060; }
+  pre .kwd, code .kwd { color: #006; font-weight: bold; }
+  pre .com, code .com { color: #600; font-style: italic; }
+  pre .typ, code .typ { color: #404; font-weight: bold; }
+  pre .lit, code .lit { color: #044; }
+  pre .pun, code .pun { color: #440; }
+  pre .pln, code .pln { color: #000; }
+  pre .tag, code .tag { color: #006; font-weight: bold; }
+  pre .atn, code .atn { color: #404; }
+  pre .atv, code .atv { color: #060; }
+}

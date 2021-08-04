@@ -1,0 +1,702 @@
+@import 'settings';
+@import 'foundation';
+@include foundation-global-styles;
+//@include foundation-grid;
+@include foundation-flex-grid;
+@include foundation-flex-classes;
+@include foundation-typography;
+@include foundation-forms;
+@include foundation-button;
+//@include foundation-accordion;
+//@include foundation-accordion-menu;
+//@include foundation-badge;
+//@include foundation-breadcrumbs;
+@include foundation-button-group;
+//@include foundation-callout;
+//@include foundation-card;
+//@include foundation-close-button;
+@include foundation-menu;
+//@include foundation-menu-icon;
+//@include foundation-drilldown-menu;
+//@include foundation-dropdown;
+//@include foundation-dropdown-menu;
+//@include foundation-responsive-embed;
+@include foundation-label;
+//@include foundation-media-object;
+//@include foundation-off-canvas;
+//@include foundation-orbit;
+//@include foundation-pagination;
+//@include foundation-progress-bar;
+//@include foundation-slider;
+//@include foundation-sticky;
+//@include foundation-reveal;
+//@include foundation-switch;
+@include foundation-table;
+//@include foundation-tabs;
+//@include foundation-thumbnail;
+//@include foundation-title-bar;
+//@include foundation-tooltip;
+@include foundation-top-bar;
+@include foundation-visibility-classes;
+//@include foundation-float-classes;
+@import 'vendor/font-awesome';
+@import 'vendor/prettify';
+@import 'code';
+
+// Mixins
+@mixin top-bar-width {
+    width: 100%;
+        
+    @include breakpoint(medium) {
+        width: auto;
+    }
+}
+
+@mixin custom-flex-grid-row {
+    padding-left: rem-calc(20);
+    padding-right: rem-calc(20);
+}
+
+// Tags
+body {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+}
+
+h1 {
+    color: $dark-gray;
+}
+
+h2 {
+    font-weight: 400;
+    line-height: 1.1;
+    margin-top: $subheader-margin-top;
+}
+
+section {
+    @include flex-grid-row();
+    padding-top: rem-calc(30);
+    padding-bottom: rem-calc(30);
+}
+
+select {
+    background-image: none;
+    padding: 0 0.25rem;
+}
+
+a {
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+// Columns
+.column-full {
+    @include flex-grid-column();
+    
+    padding-right: rem-calc(30);
+    padding-left: rem-calc(30);
+    width: 100%;
+    
+    @include breakpoint(medium) {
+        padding-right: rem-calc(40);
+        padding-left: rem-calc(40);
+    }
+}
+
+// Misc
+.text-link
+{
+    font-weight: 600;
+}
+
+// Go to top
+.top {
+    color: $button-background;
+    font-size: 80%;
+    margin-left: 0.8rem;
+    
+    &:hover {
+        color: $button-background-hover;
+    }
+}
+
+// Navigation
+.top-bar {
+    background-color: transparent;
+    font-size: rem-calc(16.8);
+    font-weight: 400;
+    padding: 1.1rem 0;
+    position: relative;
+    z-index: 2;
+    /*
+    &:after  {
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        content: '';
+        display: block;
+        position: absolute;
+        height: 10px;
+        right: -5px;
+        bottom: -1px;
+        left: -5px;
+        z-index: 1;
+    }
+    */
+    &-row {
+        flex-flow: column;
+        
+        @include breakpoint(medium) {
+            flex-flow: row;
+        }
+    }
+    
+    &-title {
+        @include top-bar-width;
+        margin: 0;
+        
+        &-link {
+            display: block;
+            line-height: 1;
+            padding: 0.7rem 1.2rem;
+            text-align: center;
+        }
+    }
+    
+    &-left {
+        @include top-bar-width;
+        
+        > .menu {
+            background-color: transparent;
+            flex-flow: column;
+
+            @include breakpoint(medium) {
+                flex-flow: row;
+                justify-content: center;
+            }
+            
+            @include breakpoint(large) {
+                justify-content: flex-start;
+            }
+        
+             > li {
+                position: relative;
+                @include top-bar-width;
+
+                &:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    transform: scale(0.9);
+                    transition: 0.2s;
+                }
+
+                &:hover:after {
+                    background-color: $primary-color;
+                    transform: scale(1);
+                }
+
+                > a {
+                    color: $primary-color;
+                    display: block;
+                    position: relative;
+                    text-align: center;
+                    transition: 0.2s;
+                    z-index: 2;
+
+                    &:hover {
+                        color: $white;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.home-banner {
+    position: relative;
+    z-index: 2;
+    
+    &-bkgd {
+        background: linear-gradient(to bottom, $white 20%, #adcee3 100%); /* addef3 */
+        overflow: hidden;
+        position: relative;
+    }
+    
+    &-circle {
+        border: 40px solid $secondary-color;
+        border-radius: 50%;
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        z-index: 1;
+    }
+    
+    &-section {
+        padding-top: 0;
+        padding-bottom: 0;        
+    }
+    
+    &-subsection {
+        @include flex-grid-row();
+        justify-content: center;
+
+        @include breakpoint(large) {
+            justify-content: flex-start;
+        }
+    }
+    
+    &-text-column {
+        @include flex-grid-column(12, 50);
+        overflow: visible;
+        margin-top: 1.6rem;
+        margin-bottom: 1.6rem;
+        position: relative;
+        text-align: center;
+        
+        @include breakpoint(medium) {
+            @include flex-grid-column(8, 0);
+        }
+        
+        @include breakpoint(large) {
+            @include flex-grid-column(5, 0);
+            @include grid-column-offset(1);
+            margin-top: 0;
+            text-align: left;
+        }
+    }
+    
+    &-header {
+        line-height: 1;
+        margin-bottom: 0.25em;
+        position: relative;
+        left: -2px;
+        
+        & > img {
+            max-width: none;
+        }
+    }
+    
+    .phase {
+        @include label;
+        color: scale-color($secondary-color, $lightness: 15%);
+        font-size: rem-calc(11);
+        padding: 0 0 0 3px;
+        position: absolute;
+        top: 2px;
+        
+        @include breakpoint(large) {
+            left: 188px;
+        }
+    }
+    
+    &-text {
+        color: scale-color($secondary-color, $lightness: -15%);;
+        font-size: rem-calc(22);
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom: 1.0em;
+    }
+    
+    &-button {
+        @include button(false, $secondary-color, 'auto', $white, solid);
+        font-size: 1.2rem;
+        margin: 0;
+        padding-right: 2.2rem;
+        padding-left: 2.2rem;
+        
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    
+    
+    &-camera-column {
+        @include flex-grid-column(12, 0);
+        height: 325px;
+        position: relative;
+        
+        @include breakpoint(large) {
+            @include flex-grid-column(6, 0);
+        }
+    }
+    
+//    &-camera,
+//    &-camera-frame {
+//        display: none;
+//        position: absolute !important;
+//        top: 70%;
+//        left: 50%;
+//        transform: translate(-50%, -50%);
+//        
+//        @include breakpoint(medium) {
+//            left: 50%;
+//        }
+//        
+//        @include breakpoint(large) {
+//            left: 40%;
+//        }
+//    }
+//    
+//    &-camera-frame {
+//        max-width: none;
+//        width: 400px;
+//    }
+    
+    &-graphic {
+        max-width: none;
+        position: absolute !important;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%) translate3d(0px, 300px, 0px);
+        width: 400px;
+        
+        @include breakpoint(large) {
+            left: 40%;
+        }
+    }
+}
+
+.greensock {
+    background-color: $greensock-black;
+    
+    &-subsection {
+        @include flex-grid-row();
+        justify-content: center;
+
+        @include breakpoint(large) {
+            justify-content: flex-start;
+        }
+    }
+    
+    &-text-column {
+        @include flex-grid-column(12, 0);
+        text-align: center;
+        
+        @include breakpoint(medium) {
+            @include flex-grid-column(8, 0);
+        }
+        
+        @include breakpoint(large) {
+            @include flex-grid-column(5, 0);
+            @include grid-column-offset(1);
+            text-align: left;
+        }
+    }
+    
+    &-header {
+        color: $white;
+        line-height: 1.2;
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        
+        @include breakpoint(medium) {
+            font-size: rem-calc(30);
+        }
+    }
+    
+    &-text {
+        color: $medium-gray;
+    }
+    
+    &-link {
+        color: $greensock-green;
+        
+        &:focus,
+        &:hover {
+            color: scale-color($greensock-green, $lightness: -14%);
+        }
+    }
+    
+    &-graphic-column {
+        @include flex-grid-column(12, 0);
+        position: relative;
+        
+        @include breakpoint(large) {
+            @include flex-grid-column(6, 0);
+            text-align: left;
+        }
+    }
+    
+    &-graphic {
+        margin-left: -8px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        
+        @include breakpoint(large) {
+            @include absolute-center();
+            left: 40%;
+        }
+    }
+}
+
+.demo {
+     background-color: scale-color($light-gray, $lightness: 25%);
+    
+    > section {
+        padding-bottom: rem-calc(50);
+    }
+    
+    &-camera {
+        background-color: $white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        display: none;
+        height: 400px;
+        width: 600px;
+        
+        &-reticle {
+            pointer-events: none;
+        }
+        
+        &-crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 1;
+        }
+            
+        .crosshair {    
+            &-horizontal-background {
+                background-color: rgba(255,255,255,0.5);
+                height: 3px;
+                transform: translate(-50%, -1px);
+                width: 42px;
+            }
+            
+            &-vertical-background {
+                background-color: rgba(255,255,255,0.5);
+                height: 42px;
+                transform: translate(-1px, -50%);
+                width: 3px;
+            }
+            
+            &-horizontal-foreground {
+                background-color: rgba(0,0,0,1);
+                height: 1px;
+                transform: translate(-50%, 0px);
+                width: 40px;
+            }
+            
+            &-vertical-foreground {
+                background-color: rgba(0,0,0,1);
+                height: 40px; 
+                transform: translate(0px, -50%);
+                width: 1px;
+            }
+        }
+    }
+    
+    &-cpanel {
+        @include flex-grid-column(12);
+        background-color: scale-color($medium-gray, $lightness: -8%);
+        box-shadow: 0 0 10px rgba(0,0,0,0.25);
+        padding: 1.3em 1.6em !important;
+
+        @include breakpoint(medium) {
+            padding: 1.3em 2.0em !important;
+        }
+        
+        @include breakpoint(large) {
+            @include flex-grid-size(expand);
+            height: 500px;
+        }
+        
+        &-behaviors {
+            @include flex-grid-column(6);
+            padding-right: 0.65em;
+            
+            @include breakpoint(medium) {
+                padding-right: 0.75em;
+            }
+        }
+        
+        &-controls {
+            @include flex-grid-column(6);
+            padding-left: 0.65em;
+            
+            @include breakpoint(medium) {
+                padding-left: 0.75em;
+            }
+        }
+        
+        &-header {
+            line-height: 1.05;
+        }
+        
+        &-behavior-actions {
+            margin-top: 0.4em;
+        }
+        
+        &-controls-actions {
+            @include button-group;
+            @include button-group-expand;
+            @include button-group-stack;
+            margin-top: 1.05em;
+        }
+    }
+}
+
+.custom-dropdown {
+    position: relative;
+
+    &-input {
+        cursor: pointer;
+        font-size: rem-calc(20);
+        font-weight: $header-font-weight;
+        line-height: $header-lineheight;
+        margin-bottom: $header-margin-bottom;
+
+        @include breakpoint(medium) {
+            font-size: rem-calc(28);
+        }
+    }
+
+    &-arrow {
+        font-size: 85%;
+        padding-left: 0.2rem;
+        transform-origin: 57% 47%;
+        transition: all 0.2s ease-out;
+    }
+
+    &-popup-list {
+        background-color: $light-gray;
+        box-shadow: 0 0 7px rgba(0,0,0,0.2);
+        min-width: 150px;
+        padding: 0.2rem 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        &:after {
+            border: 1px solid rgba(0,0,0,0.1);
+            content: '';
+            display: block;
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            bottom: -1px;
+            left: -1px;
+            z-index: 1;
+        }
+
+        > li {
+            color: $black;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.1rem 1.4rem 0.25rem;
+            position: relative;
+            z-index: 2;
+
+            &:hover {
+                background-color: #bc78cf;
+                background-color: scale-color($primary-color, $lightness: 40%);
+            }
+        }
+    }
+}
+
+.get-started {
+    border-top: 1px solid #ccc;
+}
+
+.documentation {
+    border-top: 1px solid #ccc;
+}
+
+.footer {
+    background-color: #bdaec6;
+    
+    &-copyright {
+        margin-bottom: 0;
+    }
+    
+    &-github {
+        margin-right: 0.07rem;
+    }
+}
+
+// Demo scene
+.periodic-table {
+    position: relative;
+    width: 1350px;
+    height: 900px;
+}
+
+.element {
+    border: 1px solid;
+    position: absolute;
+    text-align: center;
+    width: 70px;
+    height: 85px;
+    
+    &:hover > &-symbol  {
+        text-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    
+    &-number {
+        color: rgba(255,255,255,0.8);
+        font-size: 0.7rem;
+        line-height: 1.3;
+        padding: 0.4rem 0.4rem 0 0;
+        text-align: right;
+        text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    &-symbol {
+        color: rgba(255,255,255,1);
+        font-size: 1.8rem;
+        font-weight: bold;
+        line-height: 1.2;
+        text-shadow: 0 0 10px rgba(255,255,255,0.6);
+    }
+
+    &-name {
+        color: rgba(255,255,255,0.8);
+        font-size: 0.5rem;
+        line-height: 1.3;
+        text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    &-weight {
+        color: rgba(255,255,255,0.8);
+        font-size: 0.5em;
+        line-height: 1.0;
+        text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+}
+
+.metal {
+    background: linear-gradient(to bottom, scale-color($primary-color, $lightness: 15%) 30%, scale-color($primary-color, $lightness: -15%) 100%);
+    border-color: scale-color($primary-color, $lightness: -25%);
+    
+    &:hover {
+        background: linear-gradient(to bottom, scale-color($primary-color, $lightness: 45%) 30%, scale-color($primary-color, $lightness: 15%) 100%);
+        border-color: scale-color($primary-color, $lightness: 5%);
+    }
+}
+
+.metalloid {
+    background: linear-gradient(to bottom, scale-color($dark-gray, $lightness: 0%) 30%, scale-color($dark-gray, $lightness: -30%) 100%);
+    border-color: scale-color($dark-gray, $lightness: -40%);
+    
+    &:hover {
+        background: linear-gradient(to bottom, scale-color($dark-gray, $lightness: 30%) 30%, scale-color($dark-gray, $lightness: 0%) 100%);
+        border-color: scale-color($dark-gray, $lightness: -10%);
+    }
+}
+
+.nonmetal {
+    background: linear-gradient(to bottom, scale-color($secondary-color, $lightness: 15%) 30%, scale-color($secondary-color, $lightness: -15%) 100%);
+    border-color: scale-color($secondary-color, $lightness: -25%);
+    
+    &:hover {
+        background: linear-gradient(to bottom, scale-color($secondary-color, $lightness: 45%) 30%, scale-color($secondary-color, $lightness: 15%) 100%);
+        border-color: scale-color($secondary-color, $lightness: 5%);
+    }
+}
